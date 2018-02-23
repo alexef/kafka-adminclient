@@ -116,7 +116,7 @@ class AdminClient(object):
         """Get all consumer groups known to the cluster
 
         Returns:
-            dict: {group (str): broker_id (int)}
+            list: [Group]
         """
         groups = {}
         for broker in self._client.cluster.brokers():
@@ -130,7 +130,7 @@ class AdminClient(object):
                     groups[group] = Group(group, broker.nodeId)
             else:
                 log.error("No response for ListGroupsRequest")
-        return groups
+        return groups.values()
 
     def describe_consumer_group(self, group):
         """
