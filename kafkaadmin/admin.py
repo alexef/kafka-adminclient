@@ -130,7 +130,7 @@ class AdminClient(object):
                     groups[group] = Group(group, broker.nodeId)
             else:
                 log.error("No response for ListGroupsRequest")
-        return groups.values()
+        return list(groups.values())
 
     def describe_consumer_group(self, group):
         """
